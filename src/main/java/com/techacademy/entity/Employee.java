@@ -1,28 +1,29 @@
 package com.techacademy.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Where;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "employee")
+@Where(clause = "delete_flag = 0")
 public class Employee {
-
-    public static enum Role{
-        一般, 管理者
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(length = 20, nullable = false)
@@ -30,15 +31,18 @@ public class Employee {
 
     private Integer delete_flag;
 
-    private Timestamp created_at;
+    private LocalDateTime created_at;
 
-    private Timestamp updated_at;
+    private LocalDateTime updated_at;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private Authentication authentication;
 
 
+    }
 
 
 
-}
+
+
+

@@ -19,12 +19,3 @@
     text-decoration: none;
     transition: background-color .2s linear;
 }
-
-table {
-    border-collapse: collapse;
-}
-
-th, td {
-    border: solid 1px black;
-    padding: 10px 20px;
-}
