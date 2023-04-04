@@ -33,16 +33,11 @@ public class EmployeeService {
     /** Employeeの登録を行う */
     @Transactional
     public Employee saveEmployee(Employee employee) {
-        employee.setDelete_flag(0);
         employee.setCreated_at(LocalDateTime.now());
-
         Authentication authentication = employee.getAuthentication();
         authentication.setEmployee(employee);
 
         return employeeRepository.save(employee);
     }
 
-
-
-    }
-
+}

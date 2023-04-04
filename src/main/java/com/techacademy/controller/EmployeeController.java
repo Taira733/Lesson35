@@ -70,12 +70,18 @@ public class EmployeeController {
         model.addAttribute("employee", service.getEmployee(id));
         // User更新画面に遷移
         return "employee/update";
+
     }
 
     /** Employee更新処理 */
     @PostMapping("/update/{id}/")
     public String postEmployee(Employee employee) {
-        employee.setUpdated_at(LocalDateTime.now());
+        LocalDateTime dateTime = LocalDateTime.now();
+        employee.setUpdated_at(dateTime);
+        employee.setDelete_flag(0);
+        Authentication authentication = employee.getAuthentication();
+        authentication.setEmployee(employee);
+        
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
