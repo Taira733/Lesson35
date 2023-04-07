@@ -21,7 +21,7 @@
     <form method="post" action="/employee/update/" th:object="${employee}">
         <label for="code">社員番号</label>
         <br>
-        <input type="hidden" th:text="*{id}" th:field="*{id}">
+        <input type="hidden"  th:field="*{id}">
         <input type="hidden" th:text="*{authentication.code}" th:field="*{authentication.code}">
         <br>
         <label for="name">氏名</label>

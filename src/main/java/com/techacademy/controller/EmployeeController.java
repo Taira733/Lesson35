@@ -81,6 +81,7 @@ public class EmployeeController {
         LocalDateTime dateTime = LocalDateTime.now();
         employee.setUpdated_at(dateTime);
         employee.setDelete_flag(0);
+
         Authentication authentication = employee.getAuthentication();
         authentication.setEmployee(employee);
         if (!newpass.equals("")) {
@@ -91,6 +92,8 @@ public class EmployeeController {
             authentication.setPassword(emp.getAuthentication().getPassword());
 
         }
+            Employee emp = service.getEmployee(employee.getId());
+            employee.setCreated_at(emp.getCreated_at());
 
         // Employee登録
         service.saveEmployee(employee);
