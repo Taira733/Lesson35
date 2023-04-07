@@ -28,6 +28,7 @@ public class EmployeeService {
     /** Employeeを1件検索して返す */
     public Employee getEmployee(Integer id) {
         return employeeRepository.findById(id).get();
+
     }
 
     /** Employeeの登録を行う */
@@ -36,8 +37,10 @@ public class EmployeeService {
         employee.setCreated_at(LocalDateTime.now());
         Authentication authentication = employee.getAuthentication();
         authentication.setEmployee(employee);
-
         return employeeRepository.save(employee);
     }
 
+
 }
+
+

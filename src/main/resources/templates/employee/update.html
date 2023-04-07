@@ -10,7 +10,7 @@
         <nav id="global_navi">
             <ul>
                <li><a>日報管理システム</a>
-               <li><a>従業員管理</a>
+               <li><a th:href="@{/employee/list}">従業員管理</a>
                <li><a>日報管理</a>
                <li><a>さん</a>
                <li><a>ログアウト</a>
@@ -18,18 +18,21 @@
         </nav>
     </header>
     <h2><a th:text=" 'id:' + ${employee.id} + 'の従業員情報　編集ページ' "></a></h2>
-    <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
+    <form method="post" action="/employee/update/" th:object="${employee}">
         <label for="code">社員番号</label>
         <br>
-        <input type="hidden" id="code" name="code" th:value="*{authentication.code}" th:text="*{authentication.code}">
+        <input type="hidden" th:text="*{id}" th:field="*{id}">
+        <input type="hidden" th:text="*{authentication.code}" th:field="*{authentication.code}">
         <br>
         <label for="name">氏名</label>
         <br>
         <input type="text" th:field="*{name}">
         <br>
-        <label for="password">パスワード</label>
+        <label for="newpass">パスワード</label>
         <br>
-        <input type="text">
+        <!--/*<input type="hidden" th:field="*{authentication.password}">*/-->
+        <!--<input type="hidden" th:field="*{authentication.password}">-->
+        <input type="text" name="newpass">
         <br>
         <label for="role">権限</label>
         <br>

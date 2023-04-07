@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techacademy.entity.Authentication;
 import com.techacademy.entity.Employee;
@@ -39,7 +40,7 @@ public class EmployeeController {
     /** Employee登録画面を表示 */
     @GetMapping("/register")
     public String getRegister(@ModelAttribute Employee employee) {
-     // Employee登録画面に遷移
+        // Employee登録画面に遷移
         return "employee/register";
     }
 
@@ -63,6 +64,7 @@ public class EmployeeController {
         // Employee詳細画面に遷移
         return "employee/detail";
     }
+
     /** Employee更新画面 */
     @GetMapping("/update/{id}/")
     public String getEmployee(@PathVariable("id") Integer id, Model model) {
@@ -74,19 +76,28 @@ public class EmployeeController {
     }
 
     /** Employee更新処理 */
-    @PostMapping("/update/{id}/")
-    public String postEmployee(Employee employee) {
+    @PostMapping("/update/")
+    public String postEmployee(Employee employee, @RequestParam("newpass") String newpass) {
         LocalDateTime dateTime = LocalDateTime.now();
         employee.setUpdated_at(dateTime);
         employee.setDelete_flag(0);
         Authentication authentication = employee.getAuthentication();
         authentication.setEmployee(employee);
-        
+        if (!newpass.equals("")) {
+            authentication.setPassword(newpass);
+        } else {
+            // パスワードが入力されていない場合
+            Employee emp = service.getEmployee(employee.getId());
+            authentication.setPassword(emp.getAuthentication().getPassword());
+
+        }
+
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }
+
     /** Employee削除処理 */
     @GetMapping("/delete/{id}/")
     public String deleteEmployee(@PathVariable("id") Integer id, Model model) {
