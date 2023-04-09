@@ -92,6 +92,7 @@ public class EmployeeController {
             authentication.setPassword(emp.getAuthentication().getPassword());
 
         }
+            // 作成日時の取得
             Employee emp = service.getEmployee(employee.getId());
             employee.setCreated_at(emp.getCreated_at());
 

@@ -1,9 +1,6 @@
 package com.techacademy.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,13 +31,9 @@ public class EmployeeService {
     /** Employeeの登録を行う */
     @Transactional
     public Employee saveEmployee(Employee employee) {
-        
         Authentication authentication = employee.getAuthentication();
         authentication.setEmployee(employee);
         return employeeRepository.save(employee);
     }
 
-
 }
-
-

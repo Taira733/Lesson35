@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <h1>日報管理システム</h1>
+    <h2>ログイン</h2>
+    <p class="err" th:if="${param.error}">ユーザ名かパスワードが一致しませんでした。</p>
+    <form method="post" action="/login" th:action="@{/login}">
+        <label for="code">社員番号</label>
+        <br>
+        <input type="text" id="username" name="username" value="ktaro">
+        <br>
+        <label for="password">パスワード</label>
+        <br>
+        <input type="text" id="password" name="password" value="ktaro">
+        <br>
+        <input type="submit" name="loginRun" value="ログイン">
+    </form>
+</body>
+</html>
