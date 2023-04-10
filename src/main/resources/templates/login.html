@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/employee/login.css}">
 </head>
 <body>
-    <h1>日報管理システム</h1>
+    <header>
+          <h1>日報管理システム</h1>
+    </header>
+
     <h2>ログイン</h2>
     <form method="post" action="/login" th:action="@{/login}">
         <label for="code">社員番号</label>

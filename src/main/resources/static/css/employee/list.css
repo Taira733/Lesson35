@@ -20,6 +20,27 @@
     transition: background-color .2s linear;
 }
 
+#global_navi ul li form input {
+    display: block;
+    padding: 16px 20px;
+    background-color: black;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color .2s linear;
+    border-color: black;
+    border: 0px;
+    cursor:pointer
+}
+
+#global_navi ul li form {
+    display: block;
+    background-color: black;
+    border: 0px;
+    padding: 2px 0px;
+
+
+}
+
 table {
     border-collapse: collapse;
 }

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+header {
+    display: block;
+    padding: 1px 20px;
+    background-color: black;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color .2s linear;
+}
