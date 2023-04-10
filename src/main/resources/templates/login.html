@@ -7,15 +7,15 @@
 <body>
     <h1>日報管理システム</h1>
     <h2>ログイン</h2>
-    <p class="err" th:if="${param.error}">ユーザ名かパスワードが一致しませんでした。</p>
     <form method="post" action="/login" th:action="@{/login}">
         <label for="code">社員番号</label>
         <br>
-        <input type="text" id="username" name="username" value="ktaro">
+        <input type="text" id="username" name="username" >
         <br>
         <label for="password">パスワード</label>
         <br>
-        <input type="text" id="password" name="password" value="ktaro">
+        <input type="text" id="password" name="password" >
+        <br>
         <br>
         <input type="submit" name="loginRun" value="ログイン">
     </form>

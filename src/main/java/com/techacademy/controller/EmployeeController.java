@@ -3,6 +3,10 @@ package com.techacademy.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +28,9 @@ public class EmployeeController {
     public EmployeeController(EmployeeService service) {
         this.service = service;
     }
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     /** 一覧画面を表示 */
     @GetMapping("/list")
@@ -51,6 +58,8 @@ public class EmployeeController {
         employee.setCreated_at(dateTime);
         employee.setUpdated_at(dateTime);
         employee.setDelete_flag(0);
+        Authentication authentication = employee.getAuthentication();
+        authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
@@ -86,15 +95,17 @@ public class EmployeeController {
         authentication.setEmployee(employee);
         if (!newpass.equals("")) {
             authentication.setPassword(newpass);
+            authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
         } else {
             // パスワードが入力されていない場合
             Employee emp = service.getEmployee(employee.getId());
             authentication.setPassword(emp.getAuthentication().getPassword());
+            authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
 
         }
-            // 作成日時の取得
-            Employee emp = service.getEmployee(employee.getId());
-            employee.setCreated_at(emp.getCreated_at());
+        // 作成日時の取得
+        Employee emp = service.getEmployee(employee.getId());
+        employee.setCreated_at(emp.getCreated_at());
 
         // Employee登録
         service.saveEmployee(employee);

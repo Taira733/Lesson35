@@ -18,7 +18,7 @@
         </nav>
     </header>
     <h2><a th:text=" 'id:' + ${employee.id} + 'の従業員情報　編集ページ' "></a></h2>
-    <form method="post" action="/employee/update/" th:object="${employee}">
+    <form method="post" th:action="@{/employee/update/}" th:object="${employee}">
         <label for="code">社員番号</label>
         <br>
         <input type="hidden"  th:field="*{id}">
