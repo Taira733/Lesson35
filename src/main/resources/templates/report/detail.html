@@ -21,32 +21,36 @@
             </ul>
         </nav>
      </header>
-     <h2><a th:text=" 'id:' + ${employee.id} + 'の従業員情報　詳細ページ' "></a></h2>
-     <table th:object="${employee}">
-         <tr>
-            <th>社員番号</th>
-            <td th:text="*{authentication.code}"></td>
-         </tr>
+     <h2>日報 詳細ページ</h2>
+     <table th:object="${report}">
          <tr>
             <th>氏名</th>
-            <td th:text="*{name}"></td>
+            <td th:text="*{employee.name}"></td>
          </tr>
          <tr>
-            <th>権限</th>
-            <td th:text="*{authentication.role}"></td>
+            <th>日付</th>
+            <td th:text="*{#temporals.format(report_date, 'yyyy/MM/dd')}"></td>
+         </tr>
+         <tr>
+            <th>タイトル</th>
+            <td th:text="*{title}"></td>
+         </tr>
+         <tr>
+            <th>内容</th>
+            <td><pre th:text="*{content}"></pre></td>
          </tr>
          <tr>
             <th>登録日時</th>
-            <td th:text="${#temporals.format(employee.created_at, 'yyyy/MM/dd HH:mm:ss')}"></td>
-         </tr>
+            <td th:text="${#temporals.format(report.created_at, 'yyyy/MM/dd HH:mm:ss')}"></td>
          <tr>
             <th>更新日時</th>
-            <td th:text="${#temporals.format(employee.updated_at, 'yyyy/MM/dd HH:mm:ss')}"></td>
+            <td th:text="${#temporals.format(report.updated_at, 'yyyy/MM/dd HH:mm:ss')}"></td>
+         </tr>
      </table>
      <br>
-     <a th:href="@{/employee/update/{id}/(id=${employee.id})}">この従業員情報を編集する</a>
+     <a th:href="@{/report/update/{id}/(id=${report.employee.id})}" th:if = "${report.employee.authentication.code} == ${#authentication.name}">この日報を編集する</a>
      <br>
-     <a th:href="@{/employee/list}">一覧に戻る</a>
+     <a th:href="@{/report/list}">一覧に戻る</a>
 
 </body>
 </html>

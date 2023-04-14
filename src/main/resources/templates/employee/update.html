@@ -9,10 +9,10 @@
      <header>
         <nav id="global_navi">
             <ul>
-               <li><a>日報管理システム</a></li>
+               <li><a th:href="@{/}">日報管理システム</a></li>
                <li><a th:href="@{/employee/list}">従業員管理</a></li>
-               <li><a>日報管理</a></li>
-               <li><a>さん</a></li>
+               <li><a th:href="@{/report/list}">日報管理</a></li>
+               <li><a th:text="${#authentication.principal.employee.name} + '　さん'">name</a></li>
                <li><form method="post" th:action="@{/logout}">
                         <input type="submit" value="ログアウト">
                     </form>

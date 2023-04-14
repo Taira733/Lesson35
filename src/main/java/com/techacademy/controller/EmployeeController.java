@@ -2,8 +2,7 @@ package com.techacademy.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
