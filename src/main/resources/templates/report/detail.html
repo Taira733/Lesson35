@@ -11,7 +11,7 @@
             <ul>
                <li><a th:href="@{/}">日報管理システム</a></li>
                <li><a th:href="@{/employee/list}">従業員管理</a></li>
-               <li><a th:href="@{report/list}">日報管理</a></li>
+               <li><a th:href="@{/report/list}">日報管理</a></li>
                <li><a th:text="${#authentication.principal.employee.name} + '　さん'">name</a></li>
                <li>
                     <form method="post" th:action="@{/logout}">
